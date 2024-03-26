@@ -15,16 +15,20 @@
     </header>
     <main>
         <section>
-            <div class="bg-slate-200 p-4 m-4 rounded-md">
+            <div class="bg-slate-200 p-4 m-4 rounded-md text-right">
                 <input id="input-field" type="text" placeholder="Search..." class="input w-full max-w-xs" />
                 <button onclick="handleClick()" class="btn bg-slate-800">Search</button>
             </div>
         </section>
         <section class="mx-auto my-10">
+            <div id="loading-spinner" class="text-center hidden mb-10">
+                <span class="loading loading-ring loading-lg"></span>
+            </div>
+
             <div id="phone-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             </div>
             <div id="show-all-card" class="my-10 text-center hidden">
-                <button onclick="handleShowCard()" class="btn bg-slate-800">More...</button>
+                <button onclick="handleShowCard()" class="btn bg-slate-800">Load More...</button>
             </div>
         </section>
     </main>

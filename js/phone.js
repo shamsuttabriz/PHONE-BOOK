@@ -35,10 +35,16 @@ const displayData = (phones) => {
         `;
         phoneContainer.appendChild(phoneCard);
     })
+
+    // All data showing in the site. so i can remove loading spinner.
+    toggleHandleSpinner(false);
 }
 
 
 const handleClick = () => {
+    // No data added in the site. So i can showing loading spinner.
+    toggleHandleSpinner(true);
+
     const inputField = document.getElementById('input-field');
     const inputText = inputField.value;
     console.log(inputText);
@@ -47,4 +53,14 @@ const handleClick = () => {
 
 const handleShowCard = () => {
     console.log("Hello World");
+}
+
+const toggleHandleSpinner = (isLoading) => {
+    const loadingSpinner = document.getElementById('loading-spinner');
+    if (isLoading) {
+        loadingSpinner.classList.remove('hidden');
+    }
+    else {
+        loadingSpinner.classList.add('hidden');
+    }
 }
