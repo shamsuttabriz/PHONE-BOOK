@@ -8,8 +8,19 @@ const loadPhone = async (searchText) => {
 const displayData = (phones) => {
     const phoneContainer = document.getElementById('phone-container');
     phoneContainer.innerHTML = '';
+
+    const showAllMore = document.getElementById('show-all-card');
+    if (phones.length > 12) {
+        showAllMore.classList.remove('hidden');
+    }
+    else {
+        showAllMore.classList.add('hidden');
+    }
+
+    phones = phones.slice(0, 12);
+
     phones.forEach(phone => {
-        console.log(phone);
+        // console.log(phone);
         const phoneCard = document.createElement('div');
         phoneCard.classList = `card bg-slate-100 shadow-xl p-8 text-black`;
         phoneCard.innerHTML = `
@@ -32,4 +43,8 @@ const handleClick = () => {
     const inputText = inputField.value;
     console.log(inputText);
     loadPhone(inputText);
+}
+
+const handleShowCard = () => {
+    console.log("Hello World");
 }
