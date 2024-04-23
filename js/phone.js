@@ -1,60 +1,63 @@
-const loadPhone = async (searchText) => {
+const loadPhone = async (searchText, isShowAllPhones) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`);
     const data = await res.json();
     const phones = data.data;
-    displayData(phones);
+    console.log(phones);
+    displayData(phones, isShowAllPhones);
 }
 
-const displayData = (phones) => {
+const displayData = (phones, isShowAllPhones) => {
     const phoneContainer = document.getElementById('phone-container');
+    // !!! Important part: Again search phone but I don't want to show previous data. 
     phoneContainer.innerHTML = '';
 
+    // Display show all button if there are more than 12 phones
     const showAllMore = document.getElementById('show-all-card');
-    if (phones.length > 12) {
+    if (phones.length > 12 && !isShowAllPhones) {
         showAllMore.classList.remove('hidden');
     }
     else {
         showAllMore.classList.add('hidden');
     }
 
-    phones = phones.slice(0, 12);
+    console.log("Is Show All Phones", isShowAllPhones);
+    // Display only first 12 phones if show all
+    if (!isShowAllPhones) {
+        phones = phones.slice(0, 12);
+    }
 
+    // Phone card load from api - Application Programming Interface
     phones.forEach(phone => {
-        // console.log(phone);
         const phoneCard = document.createElement('div');
         phoneCard.classList = `card bg-slate-100 shadow-xl p-8 text-black`;
         phoneCard.innerHTML = `
             <figure><img src="${phone.image}" alt="Shoes" /></figure>
-            <div class="card-body">
-                <h2 class="card-title">${phone.phone_name}</h2>
+            <div class="card-body text-center">
+                <h2 class="card-title mx-auto">${phone.phone_name}</h2>
                 <p>If a dog chews shoes whose shoes does he choose?</p>
-                <div class="card-actions justify-end">
-                    <button class="btn btn-primary">Buy Now</button>
+                <div class="card-actions justify-end mx-auto mt-5">
+                    <button class="btn bg-neutral">Show Details</button>
                 </div>
             </div>
         `;
         phoneContainer.appendChild(phoneCard);
     })
 
-    // All data showing in the site. so i can remove loading spinner.
+    // All data showing in the site. So I can remove loading spinner.
     toggleHandleSpinner(false);
 }
 
-
-const handleClick = () => {
-    // No data added in the site. So i can showing loading spinner.
+// Search functionality implement in the site
+const handleSearchPhone = (isShowAllPhones) => {
+    // No data added in the site. So I can showing loading spinner.
     toggleHandleSpinner(true);
 
     const inputField = document.getElementById('input-field');
     const inputText = inputField.value;
-    console.log(inputText);
-    loadPhone(inputText);
+    loadPhone(inputText, isShowAllPhones);
 }
 
-const handleShowCard = () => {
-    console.log("Hello World");
-}
-
+// !!! Important part:  Loading spinner functionality implement 
 const toggleHandleSpinner = (isLoading) => {
     const loadingSpinner = document.getElementById('loading-spinner');
     if (isLoading) {
@@ -63,4 +66,9 @@ const toggleHandleSpinner = (isLoading) => {
     else {
         loadingSpinner.classList.add('hidden');
     }
+}
+
+// Handle Show All Phones Button
+const handleShowAllPhones = () => {
+    handleSearchPhone(true);
 }
