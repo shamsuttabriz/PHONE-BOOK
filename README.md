@@ -4,7 +4,6 @@
 > ### Uses of Technologies
 >
 > - HTML
-> - CSS
 > - Tailwind CSS
 > - Deisy UI
 > - Javascript
