@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
@@ -17,7 +17,7 @@
         <section>
             <div class="bg-slate-200 p-4 rounded-md text-right">
                 <input id="input-field" type="text" placeholder="Search..." class="input w-full max-w-xs" />
-                <button onclick="handleSearchPhone()" class="btn bg-slate-800">Search</button>
+                <button onclick="handleSearchPhone()" class="btn bg-slate-800 text-slate-200 hover:text-slate-800">Search</button>
             </div>
         </section>
         <section class="mx-auto my-10">
@@ -34,10 +34,25 @@
 
             <!-- Load More All Phones Start -->
             <div id="show-all-card" class="my-10 text-center hidden">
-                <button onclick="handleShowAllPhones()" class="btn bg-slate-800">Load More...</button>
+                <button onclick="handleShowAllPhones()" class="btn bg-slate-800 text-slate-200 hover:text-slate-800">Load More...</button>
             </div>
             <!-- Load More All Phones End -->
         </section>
+
+        <!-- Show Details Modal Start -->
+        <!-- Open the modal using ID.showModal() method -->
+        <dialog id="show_details_modal" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box bg-slate-200 text-slate-600">
+                <div id="show-details-container"></div>
+                <div class="modal-action">
+                    <form method="dialog">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button class="btn">Close</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
+        <!-- Show Details Modal End -->
     </main>
     <footer>
 
